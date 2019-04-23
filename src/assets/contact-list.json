@@ -1,0 +1,50 @@
+[
+    {
+      "id": 2,
+      "FirstName": "Mark",
+      "LastName": "Bruce",
+      "Email": "mark.bruce@xyz.com",
+      "Phone": "8866364368",
+      "Group": "Family"
+    },
+    {
+      "id": 3,
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Email": "john.doe@xyz.com",
+      "Phone": "9822376539",
+      "Group": "Family"
+    },
+    {
+      "id": 4,
+      "FirstName": "Wayne",
+      "LastName": "Smith",
+      "Email": "wayne.smith@xyz.com",
+      "Phone": "7634625323",
+      "Group": null
+    },
+    {
+      "id": 5,
+      "FirstName": "Shane",
+      "LastName": "Long",
+      "Email": "shane.long@xyz.com",
+      "Phone": "7634325323",
+      "Group": null
+    },
+    {
+      "id": 6,
+      "FirstName": "Natasha",
+      "LastName": "Giovanni",
+      "Email": "Natasha.Giovanni@xyz.com",
+      "Phone": "9875216556",
+      "Group": "Friend"
+    },
+    {
+      "id": 7,
+      "FirstName": "Tom",
+      "LastName": "Godin",
+      "Email": "tom.godin@xyz.com",
+      "Phone": "6789054321",
+      "Group": "Office"
+    }
+  ]

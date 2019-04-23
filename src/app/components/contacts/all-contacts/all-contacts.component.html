@@ -1,0 +1,48 @@
+<!-- <div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4" *ngFor="let c of contacts" style="margin-left:10px; margin-bottom: 10px; text-align: center">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{c.firstName}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{c.lastName}}</h6>
+          <p class="card-text">{{c.email}}</p>
+          <p class="card-text">{{c.phone}}</p>
+          <a routerLink='/contacts/{{c.id}}' class="card-link">View</a>
+          <a href="#" class="card-link">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<table class="table table-striped table-responsive" style="margin-top:60px;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of contactService.contactList;let i = index">
+      <th scope="row">{{i + 1 }}</th>
+      <td>{{c.FirstName}}</td>
+      <td>{{c.LastName}}</td>
+      <td>{{c.Phone}}</td>
+      <td>{{c.Email}}</td>
+      <td>
+        <button type="button" class="btn btn-info" (click)="showForEdit(c)">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
