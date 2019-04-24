@@ -9,11 +9,7 @@ import { ContactService } from 'src/app/shared/services/contact.service';
 })
 export class AllContactsComponent implements OnInit {
 
-  @Output() newContact = new EventEmitter<ContactDetails>();
-
   constructor(private contactService: ContactService) { }
-
-  contact: ContactDetails;
 
   ngOnInit() {
     // this.contacts = [
@@ -25,24 +21,22 @@ export class AllContactsComponent implements OnInit {
     // ];
 
     this.contactService.getContactList();
-    
-     this.contact = {
-      id: null,
-      firstName : '', 
-      lastName : '',
-      email : '',
-      phone : null,
-      group: ''
-    }
 
-    this.newContact.emit(this.contact);
-
-    this.newContact.emit();
   }
 
-  showForEdit(contact: ContactDetails){
-    this.contactService.selectedContact = Object.assign({}, contact)
-    this.newContact.emit(contact);
+  showForEdit(contact: ContactDetails) {
+    console.log(contact);
+    this.contactService.updateContact(contact);
+  }
+
+  onDelete(id: number) {
+    console.log(id);
+    this.contactService.deleteContact(id)
+      .subscribe(data => {
+        console.log("Successfully Deleted", data)
+      },
+        error => console.log(error)
+      )
   }
 
 }

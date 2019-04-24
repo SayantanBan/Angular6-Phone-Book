@@ -1,21 +1,25 @@
-<app-all-contacts *ngIf= 'myVar' (newContact)="setValue($event)"></app-all-contacts>
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="margin: 10px; padding: 20px">
+<form  ngNativeValidate [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="margin: 10px; padding: 20px">
+  {{contact | json}}
+  <div class="form-group" *ngIf='myVar'>
+    <label for="id">Id</label>
+    <input type="text" class="form-control" id="id" name="id" formControlName="id" placeholder="id" required>
+  </div>
   <div class="form-group">
     <label for="firstName">Firstname</label>
-    <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter firstname">
+    <input type="text" class="form-control" id="firstName" name="firstName"formControlName="firstName" placeholder="Enter firstname" required>
   </div>
   <div class="form-group">
     <label for="lastName">Lastname</label>
-    <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter lastname">
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" name="lastName" placeholder="Enter lastname" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1"  formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" class="form-control" id="exampleInputEmail1"  formControlName="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="phone">Phone number</label>
-    <input type="number" class="form-control" id="phone" formControlName="phone" placeholder="Enter phonenumber">
+    <input type="tel" class="form-control" id="phone" formControlName="phone" name="phone" placeholder="Enter phonenumber" required>
   </div>
   <div style="text-align: center">
     <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">Create Contact</button>

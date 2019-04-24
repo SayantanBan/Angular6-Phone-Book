@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ContactDetails } from '../models/Contact';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -9,23 +9,33 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ContactService {
 
-
-  private _contactUrl = 'assets/contact-list.json';
-
-  selectedContact: ContactDetails;
-
   contactList: ContactDetails[];
   errorMessage: String;
 
+  private _contactUrl = 'assets/contact-list.json';
 
-  constructor(private _http: HttpClient) { }
+  private selectedContact = new BehaviorSubject<ContactDetails>({
+    id: null,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: null,
+    group: ''
+  });
 
-  /*getEmployeeList(): Observable<IEmployee[]>{
-      return this._http.get<IEmployee[]>(this._employeeUrl)
-                .do(data=> console.log("All:" + JSON.stringify(data)))
-                .catch(this.handleError);
-  }*/
 
+  latestSelectedContact = this.selectedContact.asObservable();
+
+
+
+  constructor(private _http: HttpClient) {
+
+  }
+ 
+  updateContact(newContact: ContactDetails ){
+    console.log(newContact);
+    this.selectedContact.next(newContact);
+  }
 
   getContact(): Observable<ContactDetails[]> {
     return this._http.get<ContactDetails[]>(this._contactUrl)

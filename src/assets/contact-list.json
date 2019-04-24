@@ -1,50 +1,50 @@
 [
     {
       "id": 2,
-      "FirstName": "Mark",
-      "LastName": "Bruce",
-      "Email": "mark.bruce@xyz.com",
-      "Phone": "8866364368",
-      "Group": "Family"
+      "firstName": "Mark",
+      "lastName": "Bruce",
+      "email": "mark.bruce@xyz.com",
+      "phone": "8866364368",
+      "group": "Family"
     },
     {
       "id": 3,
-      "FirstName": "John",
-      "LastName": "Doe",
-      "Email": "john.doe@xyz.com",
-      "Phone": "9822376539",
-      "Group": "Family"
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@xyz.com",
+      "phone": "9822376539",
+      "group": "Family"
     },
     {
       "id": 4,
-      "FirstName": "Wayne",
-      "LastName": "Smith",
-      "Email": "wayne.smith@xyz.com",
-      "Phone": "7634625323",
-      "Group": null
+      "firstName": "Wayne",
+      "lastName": "Smith",
+      "email": "wayne.smith@xyz.com",
+      "phone": "7634625323",
+      "group": null
     },
     {
       "id": 5,
-      "FirstName": "Shane",
-      "LastName": "Long",
-      "Email": "shane.long@xyz.com",
-      "Phone": "7634325323",
-      "Group": null
+      "firstName": "Shane",
+      "lastName": "Long",
+      "email": "shane.long@xyz.com",
+      "phone": "7634325323",
+      "group": null
     },
     {
       "id": 6,
-      "FirstName": "Natasha",
-      "LastName": "Giovanni",
-      "Email": "Natasha.Giovanni@xyz.com",
-      "Phone": "9875216556",
-      "Group": "Friend"
+      "firstName": "Natasha",
+      "lastName": "Giovanni",
+      "email": "Natasha.Giovanni@xyz.com",
+      "phone": "9875216556",
+      "group": "Friend"
     },
     {
       "id": 7,
-      "FirstName": "Tom",
-      "LastName": "Godin",
-      "Email": "tom.godin@xyz.com",
-      "Phone": "6789054321",
-      "Group": "Office"
+      "firstName": "Tom",
+      "lastName": "Godin",
+      "email": "tom.godin@xyz.com",
+      "phone": "6789054321",
+      "group": "Office"
     }
   ]
