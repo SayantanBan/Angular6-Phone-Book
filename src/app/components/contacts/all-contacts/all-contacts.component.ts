@@ -9,6 +9,12 @@ import { ContactService } from 'src/app/shared/services/contact.service';
 })
 export class AllContactsComponent implements OnInit {
 
+  selectedContactCountRadioButton: string = 'All';
+  _listFilter: string;
+  filteredContactList: ContactDetails[];
+  p: number = 1;
+
+
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
@@ -21,8 +27,46 @@ export class AllContactsComponent implements OnInit {
     // ];
 
     this.contactService.getContactList();
-
+    this.contactService.getContact().subscribe(res =>
+      this.filteredContactList = res
+    ),
+      err => console.log(err)
   }
+
+  getAllContactsCount(): number {
+    return this.contactService.contactList.length;
+  }
+
+  getFamilyContactsCount(): number {
+    return this.contactService.contactList.filter(e => e.group === 'Family').length;
+  }
+
+  getFriendContactsCount(): number {
+    return this.contactService.contactList.filter(e => e.group === 'Friend').length;
+  }
+
+  getOfficeContactsCount(): number {
+    return this.contactService.contactList.filter(e => e.group === 'Office').length;
+  }
+
+  onContactsCountRadioButtonChange(selectedRadioButtonValue: string): void {
+    this.selectedContactCountRadioButton = selectedRadioButtonValue;
+  }
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value.toLowerCase();
+    this.filteredContactList = this.listFilter ? this.performFilter(this.listFilter) : this.contactService.contactList;
+  }
+
+  performFilter(filterBy: string): ContactDetails[] {
+    return this.contactService.contactList.filter((contact: ContactDetails) =>
+      contact.firstName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
 
   showForEdit(contact: ContactDetails) {
     console.log(contact);

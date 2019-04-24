@@ -17,6 +17,8 @@ import { AllContactsComponent } from './components/contacts/all-contacts/all-con
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateContactComponent } from './components/contacts/create-contact/create-contact.component';
+import { ContactsCountComponent } from './components/contacts/contacts-count/contacts-count.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { CreateContactComponent } from './components/contacts/create-contact/cre
     ContactViewComponent,
     AllContactsComponent,
     CreateContactComponent,
+    ContactsCountComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
