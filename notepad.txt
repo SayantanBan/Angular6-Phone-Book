@@ -1,0 +1,395 @@
+TypeScript Repository 
+---
+https://github.com/arunprabu/typescript-in-2-days
+
+Angular 6 Project Repo
+--------
+https://github.com/arunprabu/phone-book-ng6
+
+
+npm i -g @angular/cli@6.2.9 
+ng -v 
+
+Creating Angular Project
+ng new phone-book-ng6 
+cd phone-book-ng6 
+code .
+ng serve  // will start the server 
+ng serve -o    // will open the browser automatically
+
+https://notepad.pw/Angular6April2019
+
+header.comp.html
+
+<header>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+</header>
+
+
+===
+footer.comp.ts -- template
+=-=========
+<div>
+	<hr>
+        <p>Copyright &copy; 2019</p>
+</div>
+
+
+bootstrap css
+====
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+Feedback pls
+---------
+https://www.surveymonkey.com/r/79HDCKM
+
+https://github.com/arunprabu/phone-book-ng6
+
+Child Routes -- Ref 
+https://github.com/arunprabu/ng4-july18/blob/master/Router%20Instructions%20-%20More%20-%20Child%20Routes.txt
+https://github.com/arunprabu/ng4-july18/tree/master/my-child-routes
+
+Bootstrap JS files
+----------------------------
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+colorizr.directive.ts
+--------------------
+import { Directive, ElementRef } from '@angular/core';
+
+//decorator 
+@Directive({
+  selector: '[appColorizr]'
+})
+export class ColorizrDirective {
+
+  constructor(private elementRef: ElementRef) { 
+    console.log("Inside Constructor");
+    console.log(this.elementRef.nativeElement);
+  }
+
+}
+
+
+More on Directives -- Ref
+https://github.com/arunprabu/e_y_mean_ng4/tree/master/mean_with_ng4/my-custom-directive
+Note: the above may require some changes in API's as it was created in ng 4.
+
+
+contacts.comp.html
+----
+<div class="container">
+  <div class="row">
+    <section class="col-sm-12 main-section ">
+      <div class="jumbotron">
+        <h1 class="display-4">Contact Manager App!</h1>
+        <a class="btn btn-primary btn-lg" routerLink="/contacts/new" role="button">Create New Contact</a>
+      </div>
+    </section>
+  </div>
+  <div class="row" >
+    <div class="card col-sm-3" >
+      <div class="card-body">
+        <h5 class="card-title">John</h5>
+        <p class="card-text">john@example.com</p>
+        <a routerLink="/contacts/1" class="link">View Details</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+add-contact.comp.html 
+-------
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Add Contact</h1>
+    </div>
+    <form class="col-md-6 offset-md-3">
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Enter Full Name" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Enter Phone" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" placeholder="Enter Email" required>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        Submitted Successfully
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+------------------
+contact-details.comp.html
+-----
+<div class="container">
+  <div class="row">
+    <div class="card col-md-12">
+      <div class="card-body">
+        <h5 class="card-title">John  </h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+          card's content.</p>
+        <p>Phone: 325325</p>
+        <p>Email: john@example.com</p>
+        <button type="button" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Enter user name" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" placeholder="Enter Phone" >
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" placeholder="Enter Email">
+                    </div>
+                  </div>
+
+                  <div class="alert alert-success">
+                    Updated
+                  </div>
+                
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" >Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+Design Patterns book
+-----
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/
+
+ES6 Book
+-----
+https://leanpub.com/understandinges6/read
+
+
+//Reactive Form and Observable
+https://github.com/SayantanBan/Angular6-Phone-Book
+
+about.comp.html 
+------
+<div class="container">
+  <h2>Cross component communication via Common shared services</h2>
+  Name is: {{ profileName }} <br><br>
+  <input type="text" [(ngModel)]="newProfileName"> <br><br>
+  <button type="button" (click)="updateNameHandler()">Update Name</button>
+</div>
+
+get-in-touch comp.html
+----
+<div class="container text-left">
+    <div class="row">
+      <div class="col-10">
+        <div class="jumbotron">
+          <h2>Angular 7 Reactive Forms with validation</h2>
+          <!-- form starts -->
+          <form name="form" [formGroup]="getInTouchForm">           <!-- step 4 -->
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <!-- step 5 - add formControlName for the inputs and do the same for all other inputs also -->
+
+              <input type="text" class="form-control" required formControlName="firstName" 
+              [ngClass]="{ 'is-invalid': getInTouchForm.get('firstName').touched && getInTouchForm.get('firstName').invalid }"/>
+              <div class="invalid-feedback">
+                <div>First Name is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" required formControlName="lastName" 
+              [ngClass]="{'is-invalid': getInTouchForm.get('lastName').touched && getInTouchForm.get('lastName').invalid}"/>
+              <div class="invalid-feedback">
+                <div>Last Name is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control"  formControlName="email" 
+                [ngClass]="{'is-invalid': getInTouchForm.get('email').touched && getInTouchForm.get('email').invalid}"
+                  required />
+                <div *ngIf="getInTouchForm.get('email').touched && getInTouchForm.get('email').invalid" class="invalid-feedback">
+                  <div *ngIf="getInTouchForm.get('email').errors.required">Email is required</div>
+                  <div *ngIf="getInTouchForm.get('email').errors.email">Email seems to be not valid</div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': getInTouchForm.get('password').touched && getInTouchForm.get('password').invalid}"/>
+              <div *ngIf="getInTouchForm.get('password').touched && getInTouchForm.get('password').invalid" class="invalid-feedback">
+                <div *ngIf="getInTouchForm.get('password').errors.required">Password is required</div>
+                <div *ngIf="getInTouchForm.get('password').errors.minlength">Password must be at least 6 characters</div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+get-in-touch.ts
+----
+
+before constuctor -paste the following
+// 1. create FormGroup
+  getInTouchForm = new FormGroup({ 
+    // 2. create new FormControl for form fields
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', [  
+      Validators.required,
+      Validators.email
+    ]),  //3 - added email validators
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ]) //4. password validators also added
+  });
+
+
+
+Unit Testing
+========
+Unit Testing Angular 4 Tutorial
+================================
+  Prerequisites: Jasmine JS (beginner level experience required)
+
+In this example, lets's build the calculator component and add a few unit test cases.
+
+For this example I create a new project namely 'my-unit-testing', you can create a new  or use existing project. This tutorial should help you get some idea about writing test cases using Jasmine inside angular 4/5 app.
+
+Angular App has all the essential setup related to Jasmine and Karma for us to run unit testing. 
+karma.conf.js has that setup. Learn more about this file here 
+https://karma-runner.github.io/1.0/config/configuration-file.html
+
+Jasmine is a behavior driven testing framework. Learn more about it here 
+https://jasmine.github.io/2.1/introduction
+
+We know that the angular app has test specs in it. By default the app has 'app.component.spec.ts' in it. Everything is properly wired up.
+
+Step 1: All you have to do now is run a command 'ng test' in cmd prompt 
+Step 2: A browser window will be opened that will show about unit test case's status. By default, the 3 test cases will be passing. Stop for while!. 
+
+Let's learn about few more things before going deeper into unit testing. Karma is the test runner built by Angular JS 1.x team, the same is now used alongside angular 4 to help us execute unit testing. karma.conf.js has all the configurations/setup about how to run the unit tests inside angular 4/5 apps.
+
+Step3: Open the test.ts file to find out the supporting conf for karma to run spec files when we execute the command 'ng test'. test.ts has some code comments that explain a few vital things. tsconfig.spec.json also has few more wiring up.
+
+Step 4: Now, is the time to jump into unit testing. In my codebase I have app.component.spec.ts and I have added code comments there. Have a look at them.
+
+Step 5: I hope you have completed testing the component. Remember you need to refresh your knowledge on Jasmin before writing many test cases. Now, let's learn about adding test case in our own custom component.
+  I create a new component 'ng g c calc' 
+
+  I have added some functionality in calc component. look at calc.component.html and calc.component.ts files. I have added two methods namely add() and subtract() and many test cases there. 
+  You can build on it and write your own test cases. in place of multiply and divide you can write your own test cases. Once you write your specs will fail. Then you need to fix them by adding such methods in calc.component.ts.
+
+  That's how the things should go on. That is behavior driven testing.
+
+Step 6: Enough of testing a component. LEt's learn about testing a service. 
+I create a service. ng g s services/calc. So, I got calc.service.ts, calc.service.spec.ts
+I have added a comment to help you out testing the service also. After writing test specs you should write the code in calc.service.ts also.
+
+Step 7: All test specs will run in order. If you want to skip some test cases for the whole component or service, follow the steps below.
+ If you don't want test specs to be tested for calcComponent, instead of describe you should specify an 'xdescribe'.
+
+ xdescribe('CalcComponent', () => {
+ }
+
+ The above will not be tested.
+
+Step8: If you want to run only one tests and not all, follow the step.
+If you want test specs to be tested ONLY for calcComponent not for other components or services, instead of describe you should specify an 'fdescribe'.
+
+  fdescribe('CalcComponent', () => {
+  }
+
+
