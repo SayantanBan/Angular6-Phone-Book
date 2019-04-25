@@ -19,6 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateContactComponent } from './components/contacts/create-contact/create-contact.component';
 import { ContactsCountComponent } from './components/contacts/contacts-count/contacts-count.component';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

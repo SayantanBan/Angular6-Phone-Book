@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ContactDetails } from 'src/app/shared/models/Contact';
 import { ContactService } from 'src/app/shared/services/contact.service';
+import { getMaxListeners } from 'cluster';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-contacts',
@@ -15,7 +17,7 @@ export class AllContactsComponent implements OnInit {
   p: number = 1;
 
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     // this.contacts = [
@@ -26,27 +28,33 @@ export class AllContactsComponent implements OnInit {
     //   new ContactDetails(5,"Cristiano","Roanldo","cristiano.ronaldo@cgi.com",32554234234, "colleague"),
     // ];
 
+    this.getList();
     this.contactService.getContactList();
-    this.contactService.getContact().subscribe(res =>
+
+  }
+
+  getList(): void {
+    this.contactService.getContact().subscribe(res => {
       this.filteredContactList = res
-    ),
+    },
       err => console.log(err)
+    )
   }
 
   getAllContactsCount(): number {
-    return this.contactService.contactList.length;
+    return this.filteredContactList.length;
   }
 
   getFamilyContactsCount(): number {
-    return this.contactService.contactList.filter(e => e.group === 'Family').length;
+    return this.filteredContactList.filter(e => e.group === 'Family').length;
   }
 
   getFriendContactsCount(): number {
-    return this.contactService.contactList.filter(e => e.group === 'Friend').length;
+    return this.filteredContactList.filter(e => e.group === 'Friend').length;
   }
 
   getOfficeContactsCount(): number {
-    return this.contactService.contactList.filter(e => e.group === 'Office').length;
+    return this.filteredContactList.filter(e => e.group === 'Office').length;
   }
 
   onContactsCountRadioButtonChange(selectedRadioButtonValue: string): void {
@@ -54,11 +62,16 @@ export class AllContactsComponent implements OnInit {
   }
 
   get listFilter(): string {
+    // console.log("getter");
+    // console.log(this._listFilter);
+
     return this._listFilter;
   }
 
   set listFilter(value: string) {
+    // console.log("setter");
     this._listFilter = value.toLowerCase();
+
     this.filteredContactList = this.listFilter ? this.performFilter(this.listFilter) : this.contactService.contactList;
   }
 
@@ -78,8 +91,12 @@ export class AllContactsComponent implements OnInit {
     this.contactService.deleteContact(id)
       .subscribe(data => {
         console.log("Successfully Deleted", data)
+        this.toastrService.error('Phone Book!', 'Successfully Deleted!')
       },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          this.toastrService.error('Phone Book!', 'Something Bad Happened!')
+        }
       )
   }
 

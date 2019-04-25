@@ -3,6 +3,7 @@ import { ContactService } from 'src/app/shared/services/contact.service';
 import { FormBuilder, NgForm, Validators, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ContactDetails } from 'src/app/shared/models/Contact';
+import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-create-contact',
     templateUrl: './create-contact.component.html',
@@ -20,16 +21,23 @@ export class CreateContactComponent implements OnInit, OnChanges, OnDestroy {
         group: ''
     };
 
-    newContact: ContactDetails
+    newContact: ContactDetails = {
+        id: null,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: null,
+        group: ''
+    };
 
     profileSubscription: Subscription; // Important: Don't forget to unsubscribe
-    constructor(private contactService: ContactService, private fb: FormBuilder) {
+    constructor(private contactService: ContactService, private fb: FormBuilder, private toastrService: ToastrService) {
         this.profileForm = this.fb.group({
-            id: [''],
+            id: [null],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: [''],
-            phone: ['', Validators.required],
+            phone: [null, Validators.required],
             group: ['']
         });
         this.profileSubscription = this.contactService.latestSelectedContact.subscribe(value => {
@@ -51,9 +59,14 @@ export class CreateContactComponent implements OnInit, OnChanges, OnDestroy {
     resetForm(form?: NgForm) {
         if (form != null)
             form.reset();
+        this.profileForm.get('id').setValue(null);
+        this.profileForm.get('firstName').setValue('');
+        this.profileForm.get('lastName').setValue('');
+        this.profileForm.get('email').setValue('');
+        this.profileForm.get('phone').setValue(null);
     }
     onSubmit(): void {
-        alert("clicked");
+        // alert("clicked");
         if (this.profileForm.get('id') == null)
             this.createNewContact();
         else
@@ -68,9 +81,15 @@ export class CreateContactComponent implements OnInit, OnChanges, OnDestroy {
 
         this.contactService.postContact(this.newContact)
             .subscribe(data => {
-                console.log("Successfully Created", data)
+                console.log("Successfully Created", data);
+                this.resetForm();
+                this.toastrService.success('Phone Book!', 'Successfully Created!')
             },
-                error => console.log(error)
+                error => {
+                    console.log(error)
+                    this.resetForm();
+                    this.toastrService.error('Phone Book!', 'Something Bad Happened!')
+                }
             )
     }
 
@@ -83,9 +102,15 @@ export class CreateContactComponent implements OnInit, OnChanges, OnDestroy {
 
         this.contactService.putContact(this.newContact.id, this.newContact)
             .subscribe(data => {
-                console.log("Successfully Updated", data)
+                console.log("Successfully Updated", data);
+                this.resetForm();
+                this.toastrService.success('Phone Book!', 'Successfully Updated!')
             },
-                error => console.log(error)
+                error => {
+                    console.log(error);
+                    this.resetForm();
+                    this.toastrService.error('Phone Book!', 'Something Bad Happened!')
+                }
             )
     }
 
